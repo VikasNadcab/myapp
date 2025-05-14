@@ -42,6 +42,8 @@ dependencies:
   google_sign_in: ^6.3.0
   sign_button: ^2.0.6
   firebase_auth: ^5.5.3
+  tabler_icons: ^2.5.0+1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
