@@ -5,9 +5,19 @@ import 'package:myapp/utils/routes.dart';
 
 class Splashcontroller extends GetxController {
   splashload() {
-    // 2.delay(() {
-    Get.offAllNamed(AppRoutes.authentication);
-    // });
+    2.delay(() {
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+        Get.offAllNamed(AppRoutes.authentication);
+      } else {
+        print('User is signed in!');
+        Get.offAllNamed(AppRoutes.home);
+      }
+    // Get.offAllNamed(AppRoutes.authentication);
+    // Get.offAllNamed(AppRoutes.notificationPermission);
+      });
+    });
   }
 
   signInWithGoogle() async {
@@ -27,8 +37,9 @@ class Splashcontroller extends GetxController {
         idToken: googleAuth.idToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
+     final user =  await FirebaseAuth.instance.signInWithCredential(credential);
       // Navigate to the next screen or handle successful sign-in
+    print(user.user);
     } catch (e) {
       print(e); // Handle errors
     }

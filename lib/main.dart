@@ -1,10 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/bindings/appbindings.dart';
+import 'package:myapp/firebase_options.dart';
 import 'package:myapp/pages/splashScreen.dart';
 import 'package:get/get.dart';
 import 'package:myapp/utils/routes.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
+
   runApp(const MyApp());
 }
 
